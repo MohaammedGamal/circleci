@@ -17,7 +17,7 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
-  create-infra_structure:
+  create-infrastructure:
     docker:
       - image: amazon/aws-cli
     steps:
