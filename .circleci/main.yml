@@ -1,0 +1,9 @@
+---
+-   name: configuring remote EC2 instance
+    hosts: all
+    user: ubuntu
+    become: true
+    become_method: sudo
+    become_user: root
+    roles:
+        - setup
