@@ -43,10 +43,26 @@ jobs:
           name: run the playbook
           command: |
             ansible-playbook main-remote.yml -i inventory
+  smoke-test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - name: test
+      - command: |
+          URL="https://blog.udacity.com/"
+          # Test if website exists
+          if curl -s --head ${URL} 
+          then
+            return 0
+          else
+            return 1
+          fi
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
       # - create-infrastructure
-      - configure-infrastructure
+      # - configure-infrastructure
+      - smoke-test
